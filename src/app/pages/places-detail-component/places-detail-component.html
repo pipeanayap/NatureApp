@@ -1,0 +1,102 @@
+<div class="place-detail-container" *ngIf="!loading && place">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1>{{ place.name }}</h1>
+    <nz-tag [nzColor]="'blue'" class="category-tag">{{ place.category }}</nz-tag>
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="content-grid">
+    <!-- Left Column -->
+    <div class="left-column">
+      <!-- Info Card -->
+      <div class="info-card">
+        <h2>Información General</h2>
+        <div class="info-row">
+          <span class="label">Descripción:</span>
+          <p>{{ place.description }}</p>
+        </div>
+        <div class="info-row">
+          <span class="label">Latitud:</span>
+          <span>{{ place.latitude }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Longitud:</span>
+          <span>{{ place.longitude }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Altitud:</span>
+          <span>{{ place.elevationMeters }} metros</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Accesible:</span>
+          <nz-tag [nzColor]="place.accessible ? 'green' : 'red'">
+            {{ place.accessible ? 'Sí' : 'No' }}
+          </nz-tag>
+        </div>
+        <div class="info-row">
+          <span class="label">Cuota de entrada:</span>
+          <span>{{ place.entryFee | currency:'USD':'symbol':'1.0-0' }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Horario:</span>
+          <span>{{ place.openingHours }}</span>
+        </div>
+      </div>
+
+      <!-- Photos Gallery -->
+      <div class="gallery-card" *ngIf="place.photos && place.photos.length > 0">
+        <h2>Galería de Fotos</h2>
+        <div class="photo-grid">
+          <div class="photo-item" *ngFor="let photo of place.photos">
+            <img [src]="photo.url" [alt]="place.name" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Trails Section -->
+      <div class="trails-card" *ngIf="place.trails && place.trails.length > 0">
+        <h2>Senderos Disponibles</h2>
+        <div class="trails-grid">
+          <div class="trail-card" *ngFor="let trail of place.trails">
+            <h3>{{ trail.name }}</h3>
+            <div class="trail-info">
+              <div class="trail-stat">
+                <span class="icon">📏</span>
+                <span>{{ trail.distanceKm }} km</span>
+              </div>
+              <div class="trail-stat">
+                <span class="icon">⏱️</span>
+                <span>{{ trail.estimatedTimeMinutes }} min</span>
+              </div>
+              <div class="trail-stat">
+                <nz-tag [nzColor]="getDifficultyColor(trail.difficulty)">
+                  {{ trail.difficulty }}
+                </nz-tag>
+              </div>
+              <div class="trail-stat">
+                <nz-tag [nzColor]="trail.isLoop ? 'purple' : 'cyan'">
+                  {{ trail.isLoop ? '🔄 Loop' : '➡️ Linear' }}
+                </nz-tag>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column - Map -->
+    <div class="right-column">
+      <div class="map-card">
+        <h2>Ubicación</h2>
+        <div id="detail-map" class="map-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="loading">
+  <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+  <p>Cargando detalles del lugar...</p>
+</div>

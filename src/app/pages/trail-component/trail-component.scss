@@ -1,0 +1,171 @@
+.trails-container {
+  padding: 24px;
+  background: #f5f7fa;
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// Header Section
+.header-section {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #1890ff;
+}
+
+.title-group {
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #262626;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+}
+
+// Loading
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+// Table Wrapper
+.table-wrapper {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  ::ng-deep {
+    .ant-table {
+      font-size: 14px;
+
+      thead > tr > th {
+        background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+        color: #262626;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 16px;
+        border-bottom: 2px solid #e8e8e8;
+      }
+
+      tbody > tr {
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f0f5ff;
+          transform: scale(1.002);
+          box-shadow: 0 2px 8px rgba(24, 144, 255, 0.1);
+        }
+
+        > td {
+          padding: 16px;
+          vertical-align: middle;
+
+          strong {
+            color: #1890ff;
+            font-weight: 600;
+          }
+        }
+      }
+
+      // Pagination
+      .ant-pagination {
+        margin: 16px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// Badges and Tags
+.place-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #595959;
+  font-size: 13px;
+}
+
+.distance-badge,
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #262626;
+  font-weight: 500;
+}
+
+.distance-badge {
+  background: #e6f7ff;
+  color: #0050b3;
+}
+
+.time-badge {
+  background: #fff7e6;
+  color: #ad6800;
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 80px 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  p {
+    font-size: 16px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .trails-container {
+    padding: 16px;
+  }
+
+  .header-section {
+    padding: 20px;
+
+    .title-group .page-title {
+      font-size: 22px;
+    }
+  }
+
+  .table-wrapper ::ng-deep {
+    .ant-table {
+      font-size: 12px;
+
+      thead > tr > th,
+      tbody > tr > td {
+        padding: 12px 8px;
+      }
+    }
+  }
+}

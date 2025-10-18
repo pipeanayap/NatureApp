@@ -1,0 +1,70 @@
+<div class="trails-container">
+  <!-- Header -->
+  <div class="header-section">
+    <div class="title-group">
+      <h1 class="page-title">🥾 Rutas y Senderos</h1>
+      <p class="page-subtitle">Explora todos los senderos disponibles</p>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-container">
+    <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+  </div>
+
+  <!-- Trails Table -->
+  <div *ngIf="!isLoading" class="table-wrapper">
+    <nz-table 
+      #trailsTable 
+      [nzData]="trails"
+      [nzPageSize]="10"
+      [nzShowPagination]="true"
+      nzSize="middle">
+      <thead>
+        <tr>
+          <th>Nombre del sendero</th>
+          <th>Lugar</th>
+          <th>Distancia</th>
+          <th>Tiempo estimado</th>
+          <th>Dificultad</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trail of trailsTable.data">
+          <td>
+            <strong>{{ trail.name }}</strong>
+          </td>
+          <td>
+            <span class="place-name">📍 {{ trail.place?.name || 'N/A' }}</span>
+          </td>
+          <td>
+            <span class="distance-badge">
+              🚶 {{ trail.distanceKm }} km
+            </span>
+          </td>
+          <td>
+            <span class="time-badge">
+              ⏱️ {{ trail.estimatedTimeMinutes }} min
+            </span>
+          </td>
+          <td>
+            <nz-tag [nzColor]="getDifficultyColor(trail.difficulty)">
+              {{ trail.difficulty }}
+            </nz-tag>
+          </td>
+          <td>
+            <nz-tag [nzColor]="trail.isLoop ? 'blue' : 'default'">
+              {{ trail.isLoop ? '🔄 Loop' : '➡️ Lineal' }}
+            </nz-tag>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && trails.length === 0" class="empty-state">
+    <p>No hay senderos disponibles</p>
+  </div>
+</div>

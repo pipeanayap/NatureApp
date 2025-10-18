@@ -1,0 +1,173 @@
+.place-detail-container {
+  padding: 32px;
+  background: #f5f5f5;
+  min-height: 100vh;
+
+  .header-section {
+    margin-bottom: 32px;
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+
+    .category-tag {
+      font-size: 14px;
+      padding: 4px 12px;
+    }
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .info-card,
+  .gallery-card,
+  .trails-card,
+  .map-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #1890ff;
+      padding-bottom: 8px;
+    }
+  }
+
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #666;
+      min-width: 150px;
+    }
+
+    p {
+      margin: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+
+    .photo-item {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+    }
+  }
+
+  .trails-grid {
+    display: grid;
+    gap: 16px;
+
+    .trail-card {
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 16px;
+      border-left: 4px solid #1890ff;
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateX(4px);
+      }
+
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+      }
+
+      .trail-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+
+        .trail-stat {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 14px;
+
+          .icon {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .map-card {
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+
+    .map-container {
+      width: 100%;
+      height: 500px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+
+  p {
+    font-size: 16px;
+    color: #666;
+  }
+}

@@ -1,0 +1,74 @@
+<div class="places-container">
+  <div class="header">
+    <div>
+      <h1 class="page-title">🌲 Lugares Naturales</h1>
+      <p class="page-subtitle">Explora los espacios naturales disponibles</p>
+    </div>
+  </div>
+
+  <nz-table 
+    [nzData]="places" 
+    nzSize="middle" 
+    [nzScroll]="{ x: '1200px' }"
+    class="places-table">
+    <thead>
+      <tr>
+        <th nzWidth="200px">Lugar</th>
+        <th>Descripción</th>
+        <th nzWidth="130px" nzAlign="center">Categoría</th>
+        <th nzWidth="100px" nzAlign="center">Accesible</th>
+        <th nzWidth="100px" nzAlign="center">Entrada</th>
+        <th nzWidth="180px">Horario</th>
+        <th nzWidth="100px" nzAlign="center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let place of places" class="table-row">
+        <td>
+          <div class="place-name">
+            <span class="icon">📍</span>
+            <strong>{{ place.name }}</strong>
+          </div>
+        </td>
+        
+        <td class="description-cell">
+          <p>{{ place.description }}</p>
+        </td>
+        
+        <td nzAlign="center">
+          <nz-tag [nzColor]="'blue'" class="category-tag">
+            {{ place.category }}
+          </nz-tag>
+        </td>
+        
+        <td nzAlign="center">
+          <nz-tag [nzColor]="place.accessible ? 'success' : 'error'">
+            {{ place.accessible ? '✓ Sí' : '✗ No' }}
+          </nz-tag>
+        </td>
+        
+        <td nzAlign="center" class="fee-cell">
+          {{ place.entryFee | currency:'USD':'symbol':'1.0-0' }}
+        </td>
+        
+        <td>
+          <div class="hours">
+            <span nz-icon nzType="clock-circle"></span>
+            {{ place.openingHours }}
+          </div>
+        </td>
+        
+        <td nzAlign="center">
+          <button 
+            [routerLink]="['/admin/places', place.id]" 
+            nz-button 
+            nzType="primary" 
+            nzShape="circle"
+            nz-tooltip="Ver detalles">
+            <span nz-icon nzType="eye"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

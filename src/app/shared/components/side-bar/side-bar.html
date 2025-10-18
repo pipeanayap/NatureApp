@@ -1,0 +1,33 @@
+<div class="sidebar-container">
+  <div class="sidebar-header">
+    <div class="logo">
+      <span class="logo-icon">🌲</span>
+      <h2>NatureApp</h2>
+    </div>
+  </div>
+
+  <ul nz-menu nzMode="inline" class="side-bar">
+    <li nz-menu-item [routerLinkActive]="'active'">
+      <a [routerLink]="['/admin/inicio']">
+        <span nz-icon nzType="shop" class="menu-icon"></span>
+        <span class="menu-text">Inicio</span>
+      </a>
+    </li>
+    
+    <li nz-menu-item [routerLinkActive]="'active'">
+      <a [routerLink]="['/admin/places']">
+        <span nz-icon nzType="appstore" class="menu-icon"></span>
+        <span class="menu-text">Lugares</span>
+      </a>
+    </li>
+    
+    <li nz-menu-item [routerLinkActive]="'active'">
+      <a [routerLink]="['/admin/trails']">
+        <span nz-icon nzType="file-text" class="menu-icon"></span>
+        <span class="menu-text">Senderos</span>
+      </a>
+    </li>
+  </ul>
+
+ 
+</div>
