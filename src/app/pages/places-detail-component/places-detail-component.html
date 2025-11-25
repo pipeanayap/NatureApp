@@ -44,6 +44,63 @@
         </div>
       </div>
 
+      <!-- AI Facts Card -->
+      <div class="facts-card">
+        <div class="facts-header">
+          <h2>🤖 Datos Curiosos con IA</h2>
+          <button 
+            nz-button 
+            nzType="primary" 
+            (click)="generateFacts()"
+            [nzLoading]="loadingFacts"
+            [disabled]="loadingFacts">
+            <span nz-icon nzType="bulb" nzTheme="outline"></span>
+            {{ loadingFacts ? 'Generando...' : 'Generar Datos Curiosos' }}
+          </button>
+        </div>
+        <div class="facts-content" *ngIf="aiResponse && !loadingFacts">
+          <div class="fact-item">
+            <div class="fact-icon">💡</div>
+            <div class="fact-body">
+              <h3>Dato Curioso</h3>
+              <p>{{ aiResponse.funFact }}</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">✨</div>
+            <div class="fact-body">
+              <h3>¿Qué lo hace especial?</h3>
+              <p>{{ aiResponse.whatsSpecial }}</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">🎯</div>
+            <div class="fact-body">
+              <h3>Ideal para</h3>
+              <p>{{ aiResponse.bestFor }}</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">📌</div>
+            <div class="fact-body">
+              <h3>Debes saber</h3>
+              <p>{{ aiResponse.mustKnow }}</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">💎</div>
+            <div class="fact-body">
+              <h3>Joya Escondida</h3>
+              <p>{{ aiResponse.hiddenGem }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="facts-empty" *ngIf="!aiResponse && !loadingFacts">
+          <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+          <p>Presiona el botón para generar datos curiosos sobre este lugar usando IA</p>
+        </div>
+      </div>
+
       <!-- Photos Gallery -->
       <div class="gallery-card" *ngIf="place.photos && place.photos.length > 0">
         <h2>Galería de Fotos</h2>

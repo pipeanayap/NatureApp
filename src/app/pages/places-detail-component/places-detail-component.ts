@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlaceService } from '../../core/services/place';
 import { Place } from '../../core/models/place.model';
+import { AIResponse } from '../../core/models/aiResponse.model';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
 
@@ -16,6 +17,8 @@ export class PlacesDetailComponent implements OnInit {
   place?: Place;
   map!: mapboxgl.Map;
   loading = true;
+  loadingFacts = false;
+  aiResponse?: AIResponse;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,5 +69,23 @@ export class PlacesDetailComponent implements OnInit {
       'Difícil': 'red'
     };
     return colors[difficulty] || 'blue';
+  }
+
+  generateFacts(): void {
+    if (!this.id) return;
+    
+    this.loadingFacts = true;
+    this.aiResponse = undefined;
+
+    this.placeService.getFacts(Number(this.id)).subscribe({
+      next: (response) => {
+        this.aiResponse = response;
+        this.loadingFacts = false;
+      },
+      error: (err) => {
+        console.error('Error generando datos curiosos:', err);
+        this.loadingFacts = false;
+      }
+    });
   }
 }
