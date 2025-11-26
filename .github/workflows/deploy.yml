@@ -31,3 +31,20 @@ jobs:
         run: |
           docker push pipeanayap/nature-app:${{ github.sha }}
           docker push pipeanayap/nature-app:latest
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker system prune -af --volumes
+            df -h
+            docker pull pipeanayap/nature-app:latest
+            cd containers
+            docker compose down
+            docker compose up -d --force-recreate
